@@ -1,6 +1,6 @@
 {
 "manifest_version": 2,
-"name": "covid",
+"name": "Qualitativly",
 "version": "1",
 
 "permissions":["pageCapture", "activeTab", "tabs", "storage", "<all_urls>"],
@@ -10,8 +10,13 @@
     "persistent":false
 }, 
 "browser_action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+  "default_icons": "QLogo128.png"
   },
+  "icons": { "16": "QLogo16.png",
+    "32": "QLogo48.png",
+    "48": "QLogo48.png",
+    "128": "QLogo128.png" },
 
   "content_scripts": [
     {
