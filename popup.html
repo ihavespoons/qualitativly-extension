@@ -1,56 +1,147 @@
 <html>
     <head>
-      <title>Water Popup</title>
-    </head>
-    <body>
-        <nav class="navbar"><div class="container">
-            <div class="navbar-brand"><a class="navbar-item" href="#">Qualitativly</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
-            <div class="navbar-menu">
-              <div class="navbar-start"><a class="navbar-item" href="#">Settings</a><a class="navbar-item" href="#">Submit Reclassification</a><a class="navbar-item" href="#">Verified Sitelist</a>
-                <a class="navbar-item" href="#"> </a>
-              </div>
-              <div class="navbar-end">
-                <div class="navbar-item">
-                  <input class="input" type="text" placeholder="Search"></div>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hello Bulma!</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <script src='popup.js'></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('conservative').addEventListener('click', main);      
+});
+function main() {
+  var source = document.getElementById('source').value;
+  document.getElementById("result").innerHTML = source;
+}
+        </script>
+
+      </head>
+      <body>
+      </html>
+    <nav class="navbar"><div class="container">
+        <div class="navbar-brand"><a class="navbar-item" href="#">Qualitativly</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
+        <div class="navbar-menu">
+          <div class="navbar-start"><a class="navbar-item" href="#">Settings</a><a class="navbar-item" href="#">Submit Reclassification</a><a class="navbar-item" href="#">Verified Sitelist</a>
+            <a class="navbar-item" href="#"> </a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <input class="input" type="text" placeholder="Search"></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="section"><div class="container has-text-centered">
+        <h2 class="title">"Fakenews" Level</h2>
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <h3 class="title is-4">Completely Oblivious</h3>
+                <p class="block">When you want to turn off Qualitativly for some quality COVID-19 Memes.</p>
+                <h4 class="title is-spaced is-5">OFF<small> </small></h4>
+                <button class="button is-primary is-outlined" type="button" >Confirm</button>
               </div>
             </div>
           </div>
-        </nav>
-        <section class="section"><div class="container has-text-centered">
-            <h2 class="title">"Fakenews" Level</h2>
-            <div class="columns">
-              <div class="column">
-                <div class="card">
-                  <div class="card-content">
-                    <h3 class="title is-4">Relaxed Reading</h3>
-                    <p class="block">When you want to think that you are reading real news, but just want to be entertained.</p>
-                    <h4 class="title is-spaced is-5">50% Trusted Sources <small> </small></h4>
-                    <button class="button is-primary" type="button">Confirm</button>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="card">
-                  <div class="card-content">
-                    <h3 class="title is-4">Conservative Reader</h3>
-                    <p class="block">When you would like to see articles from independents as well as cited sources.</p>
-                    <h4 class="title is-spaced is-5">75% Trusted Sources <small> </small></h4>
-                    <button class="button is-primary is-outlined" type="button">Confirm</button>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="card">
-                  <div class="card-content">
-                    <h3 class="title is-4">Trusted Only</h3>
-                    <p class="block">When you only trust the Government, and cited resources.</p>
-                    <h4 class="title is-spaced is-5">90% Trusted Sources <small> </small></h4>
-                    <button class="button is-primary is-outlined" type="button">Confirm</button>
-                  </div>
-                </div>
+          <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <h3 class="title is-4">Relaxed Reading</h3>
+                <p class="block">When you want to think that you are reading real news, but just want to be entertained.<br><br></p>
+                <h4 class="title is-spaced is-5">50% Trusted Sources <small> </small></h4>
+                <button class="button is-primary" type="button">Confirm</button>
               </div>
             </div>
           </div>
-        </section>
-    </body>
+          <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <h3 class="title is-4">Conservative Reader</h3>
+                <p class="block">When you would like to see articles from independents as well as cited sources.</p>
+                <h4 class="title is-spaced is-5">75% Trusted Sources <small> </small></h4>
+                <button class="button is-primary is-outlined" id="conservative" type="button">Confirm</button>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card">
+              <div class="card-content">
+                <h3 class="title is-4">Trusted Only</h3>
+                <p class="block">When you only trust the Government, and cited resources.<br><br></p>
+                <h4 class="title is-spaced is-5">90% Trusted Sources <small> </small></h4>
+                <button class="button is-primary is-outlined" type="button">Confirm</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer"><div class="container has-text-centered">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="level"><a class="level-item" href="#"> </a><a class="level-item" href="#">Verified Sitelist</a><a class="level-item" href="#">Support</a><a class="level-item" href="#"> </a></div>
+          </div>
+        </div>
+        <hr><p class="subtitle is-6">© 2020 Qualitativly - All right reserved.</p>
+      </div>
+    </footer>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <nav class="navbar"><div class="container">
+        <div class="navbar-brand"><a class="navbar-item" href="#">Qualitativly</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
+        <div class="navbar-menu">
+          <div class="navbar-start"><a class="navbar-item" href="#">Settings</a><a class="navbar-item" href="#">Submit Reclassification</a><a class="navbar-item" href="#">Verified Sitelist</a>
+            <a class="navbar-item" href="#"> </a>
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <input class="input" type="text" placeholder="Search"></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+      <section class="section"><div class="container">
+        <h2 class="title has-text-centered">Submit a website for Reclassification</h2>
+        <div class="columns">
+          <div class="column is-6"><img src="placeholder/pictures/bg_16-9.svg?primary=00d1b2" alt=""></div>
+          <div class="column is-6">
+            <form>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="email" placeholder="Email"></div>
+              </div>
+              <div class="field">
+                <div class="select is-fullwidth">
+                  <select><option disabled="" selected="">Select product</option><option>Product 1</option><option>Product 2</option><option>Product 3</option></select></div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <textarea class="textarea" rows="5" placeholder="Write something..."></textarea></div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <button class="button is-primary is-fullwidth" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+      <footer class="footer"><div class="container has-text-centered">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="level"><a class="level-item" href="#"> </a><a class="level-item" href="#">Verified Sitelist</a><a class="level-item" href="#">Support</a><a class="level-item" href="#"> </a></div>
+          </div>
+        </div>
+        <hr><p class="subtitle is-6">© 2020 Qualitativly - All right reserved.</p>
+      </div>
+    </footer>  
+      </body>
+
 </html>

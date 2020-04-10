@@ -1,16 +1,25 @@
 {
-
 "manifest_version": 2,
 "name": "covid",
 "version": "1",
 
-"permissions":["pageCapture", "activeTab", "tabs"],
+"permissions":["pageCapture", "activeTab", "tabs", "storage", "<all_urls>"],
 
 "background":{
-    "scripts": ["background.js"],
+    "scripts": ["background.js", "popup.js"],
     "persistent":false
 }, 
 "browser_action": {
-    "default_popup": "popup.html"
-  }
+    "default_popup": "index.html"
+  },
+
+  "content_scripts": [
+    {
+        "matches":["file:///popup.html*"],
+        "js": ["popup.js"]
+    }],
+    
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  
+
 }
