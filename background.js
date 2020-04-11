@@ -30,19 +30,25 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         });
 
     chrome.browserAction.getPopup({ tabId: tabId},function(result) {
-        window.alert(result);
+        //window.alert(result);
 
         console.log(document.getElementById("trust"));
     })
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    console.log(document.getElementById("trust"));
+
+
+})
+
 function eval(fakenessScore,trustworthy){
 
     document.addEventListener('DOMContentLoaded', function () {
         console.log(document.getElementById("trust"));
         
-    console.log(x);
+
 })
 }
 
@@ -65,7 +71,6 @@ function sendURL(url){
     eval(data.untrustworthy, data.trustworth);
     })
     .catch((error) => {
-    console.error('Error:', error);
     });
 }
 
