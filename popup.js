@@ -7,7 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 })
 
-
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        console.log(request)
+        if (request.greeting == "alert")
+            alert("Website trust fullness is below user settings");
+    });
 
 function conservative(){
     chrome.storage.sync.set({fakeness: "conservative"}, function() {

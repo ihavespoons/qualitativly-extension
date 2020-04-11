@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+document.addEventListener("DOMContentLoaded", function(){
 
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
@@ -13,7 +13,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
 })
 
-let value; 
+let value =75;
 function userSetting(){
    chrome.storage.sync.get(['fakeness'], function(result){
         
@@ -24,22 +24,20 @@ function userSetting(){
 
 function eval(untrust, trust) {
 	 var trustElement = document.getElementById("trust");
-     trustElement.innerText = trust* 100;
-     var untrustElement = document.getElementById("untrusted");
-     untrustElement.innerText = untrust * 100;
+	 if(!trust.includes("NaN") ) {
+         trustElement.innerText = trust * 100 + "%";
 
-     if(trust*100 >= value){
-         chrome.notifications.create(
-             'Qualitativly', {
-                 type: 'basic',
+         var untrustElement = document.getElementById("untrusted");
+         untrustElement.innerText = untrust * 100 + "%";
+     }
+	 console.log(value)
+     if(untrust*100 >= 75){
+         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+             chrome.tabs.sendMessage(tabs[0].id, {greeting: "alert"}, function(response) {
 
-                 title: "This site breaches your trusted site level",
-                 message: "This site breaches your trusted site level"
-             }
+             });
+         });
 
-
-
-         )
          alert("Website trust fullness is below user settings")
      }
 
