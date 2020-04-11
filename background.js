@@ -4,9 +4,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
                sendURL(url);
-                
-           
-              });
+        });
 
 })
 
@@ -20,35 +18,29 @@ function userSetting(){
 }
 
 
+function eval(untrust, trust) {
+    chrome.storage.sync.set({trust: trust});
+    chrome.storage.sync.set({untrust: untrust});
+   chrome.storage.sync.get(['trust'], function(result){
+        console.log(result)
+    });
+   /* uDom.nodeFromId('trust').textContent = trust;
+    uDom.nodeFromId('untrust').textContent = untrust;*/
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-        chrome.browserAction.setPopup({
-            tabId: tabId,
-            popup: 'index.html'
+    chrome.tabs.executeScript({
+        code: 'var div=document.createElement("div"); document.body.insertBefore(div, document.body.firstChild); div.innerHTML="<span>matttest</span>";'
+    });
+    /*
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {type:"getText"}, function(response){
+            var trustElement = document.getElementById("trust");
+            trustElement.innerText = trust;
+            var untrustElement = document.getElementById("untrusted");
+            untrustElement.innerText = untrust;
         });
+    });*/
 
-    chrome.browserAction.getPopup({ tabId: tabId},function(result) {
-        //window.alert(result);
-
-        console.log(document.getElementById("trust"));
-    })
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(document.getElementById("trust"));
-})
-
-function eval(fakenessScore,trustworthy){
-
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log(document.getElementById("trust"));
-        
-
-})
 }
-
-
 
 function sendURL(url){
     const data = { article_url: url };
@@ -63,8 +55,8 @@ function sendURL(url){
     })
     .then((response) => response.json())
     .then((data) => {
-    
-    eval(data.untrustworthy, data.trustworth);
+
+    eval(data.untrustworthy, data.trustworthy);
     })
     .catch((error) => {
     });

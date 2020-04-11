@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 })
 
+
+
 function conservative(){
     chrome.storage.sync.set({fakeness: "conservative"}, function() {
         console.log('Value is set to ' + value);
