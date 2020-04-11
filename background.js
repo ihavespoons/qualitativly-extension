@@ -19,9 +19,7 @@ function userSetting(){
     
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(document.getElementsByTagName("h3"));
-})
+
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         chrome.browserAction.setPopup({
@@ -39,8 +37,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log(document.getElementById("trust"));
-
-
 })
 
 function eval(fakenessScore,trustworthy){
