@@ -3,7 +3,7 @@
 "name": "Qualitativly",
 "version": "1",
 
-"permissions":["pageCapture", "activeTab", "tabs", "storage", "<all_urls>"],
+"permissions":["pageCapture", "activeTab", "tabs", "storage", "<all_urls>", "notifications"],
 
 "background":{
     "scripts": ["background.js"],

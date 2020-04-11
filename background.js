@@ -31,7 +31,7 @@ function eval(untrust, trust) {
     });
 if(trust * 100 > 10){
    console.log("breach")
- alert("This site breaches your trusted sources settings")
+
 }
 }
 

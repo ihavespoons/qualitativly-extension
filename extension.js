@@ -27,6 +27,22 @@ function eval(untrust, trust) {
      trustElement.innerText = trust* 100;
      var untrustElement = document.getElementById("untrusted");
      untrustElement.innerText = untrust * 100;
+
+     if(trust*100 >= value){
+         chrome.notifications.create(
+             'Qualitativly', {
+                 type: 'basic',
+
+                 title: "This site breaches your trusted site level",
+                 message: "This site breaches your trusted site level"
+             }
+
+
+
+         )
+         alert("Website trust fullness is below user settings")
+     }
+
 }
 
 
