@@ -1,6 +1,3 @@
-
-
-
 function userSetting(){
    chrome.storage.sync.get(['fakeness'], function(result){
         value = result.fakeness;
@@ -19,14 +16,11 @@ function eval(untrust, trust) {
         userSetting();
     }
 
-     console.log(value)
-        chrome.storage.sync.get(['alert'], function(result){value = result.alert;})
-     if (alert != 'true') {
+    console.log(value)
         if (value != 0){
         if(untrust*100 >= value){
          chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
              chrome.tabs.sendMessage(tabs[0].id, {greeting: "Alert"}, function(response) {
-
              });
          });
         var opt = {
@@ -37,12 +31,9 @@ function eval(untrust, trust) {
         }
          chrome.notifications.create('', opt)
          chrome.browserAction.setBadgeText({text: "!"});
-        chrome.storage.sync.set({alert: 'true'}, function() {
-         console.log('Value is set for alert');
-        })
      }
      }
-     }
+
 }
 
 
@@ -67,12 +58,8 @@ function sendURL(url){
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-
     chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
     chrome.browserAction.setBadgeText({text: ""});
-    chrome.storage.sync.set({alert: 'false'}, function() {
-         console.log('Value is set for alert');
-        })
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let regex = "chrome"
@@ -83,12 +70,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 });
 
 chrome.tabs.onCreated.addListener(function(tab) {
-    chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
-    chrome.browserAction.setBadgeText({text: ""});
-        chrome.storage.sync.set({alert: 'false'}, function() {
-         console.log('Value is set for alert');
-        })
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
+        chrome.browserAction.setBadgeText({text: ""});
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let regex = "chrome"
         if(url.includes(regex)){
@@ -98,12 +82,9 @@ chrome.tabs.onCreated.addListener(function(tab) {
 });
 
 chrome.tabs.onActivated.addListener(function(tabId) {
-    chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
-    chrome.browserAction.setBadgeText({text: ""});
-        chrome.storage.sync.set({alert: 'false'}, function() {
-         console.log('Value is set for alert');
-        })
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+        chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
+        chrome.browserAction.setBadgeText({text: ""});
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let regex = "chrome"
         if(url.includes(regex)){

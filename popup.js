@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", function(){
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
                 let regex = "chrome"
-                if(url.includes(regex)){
+                let other_exr "youtube"
+                let other_other_exr "facebook"
+                if(url.includes(regex) || url.includes(other_exr)) || url.includes(other_other_exr){
 
                 }
                 else{sendURL(url)
@@ -57,7 +59,7 @@ function eval(untrust, trust) {
          chrome.browserAction.setBadgeText({text: "!"});
          
         contentElement.setAttribute('style', '')
-        
+
      }
      }
 }
