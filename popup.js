@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function(){
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
                 let regex = "chrome"
-                let other_exr "youtube"
-                let other_other_exr "facebook"
-                if(url.includes(regex) || url.includes(other_exr)) || url.includes(other_other_exr){
+                let other_exr = "youtube"
+                let other_other_exr ="facebook"
+                if(url.includes(regex) || url.includes(other_exr) || url.includes(other_other_exr)){
 
                 }
                 else{sendURL(url)
@@ -40,10 +40,12 @@ function eval(untrust, trust) {
 
 	 var trustElement = document.getElementById("trust");
 	 if(!trust.includes("NaN") ) {
-         trustElement.innerText = trust * 100 + "%";
+         pre_calc = trust * 100
+         trustElement.innerText = pre_calc.toFixed(1) + "%";
 
          var untrustElement = document.getElementById("untrusted");
-         untrustElement.innerText = untrust * 100 + "%";
+         pre_calc_un = untrust * 100
+         untrustElement.innerText = pre_calc_un.toFixed(1) + "%";
      }
 
 

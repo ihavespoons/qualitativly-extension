@@ -3,8 +3,30 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('low').addEventListener('click', low);
     document.getElementById('high').addEventListener('click', high);
     document.getElementById('off').addEventListener('click', off);
+    let fakeness_value
+    chrome.storage.sync.get(['fakeness'], function(result){
+        fakeness_value = result.fakeness;
+    })
+        if(fakeness_value == null) {
+        fakeness_value = 75;
+        }
 
-
+    if (fakeness_value == 0) {
+        off_button = document.getElementById('off')
+        off_button.setAttribute('class', 'button is-primary')
+    }
+    if (fakeness_value == 50) {
+        low_button = document.getElementById('low')
+        low_button.setAttribute('class', 'button is-primary')
+    }
+    if (fakeness_value == 75) {
+        con_button = document.getElementById('conservative')
+        con_button.setAttribute('class', 'button is-primary')
+    }
+    if (fakeness_value == 90) {
+        high_button = document.getElementById('high')
+        high_button.setAttribute('class', 'button is-primary')
+    }
 });
 
 chrome.runtime.onMessage.addListener(
@@ -50,4 +72,3 @@ function readTextFile(file, callback) {
     }
     rawFile.send(null); 
 }*/
-
