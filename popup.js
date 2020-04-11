@@ -1,61 +1,86 @@
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('conservative').addEventListener('click', conservative)
-    document.getElementById('low').addEventListener('click', low);
-    document.getElementById('high').addEventListener('click', high);
-    document.getElementById('off').addEventListener('click', off);
+document.addEventListener("DOMContentLoaded", function(){
 
+            chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+                let url = tabs[0].url;
+                let regex = "chrome"
+                if(url.includes(regex)){
+
+                }
+                else{sendURL(url)
+                };
+
+        });
 
 })
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        console.log(request)
-        if (request.greeting == "alert")
-            alert("Website trust fullness is below user settings");
-    });
 
-function conservative(){
-    chrome.storage.sync.set({fakeness: "conservative"}, function() {
-        console.log('Value is set to ' + value);
+function userSetting(){
+   chrome.storage.sync.get(['fakeness'], function(result){
+        value = result.fakeness;
     })
+    
 }
 
-
-function conservative(){
-    chrome.storage.sync.set({fakeness: 75}, function() {
-        console.log('Value is set to ' + "conservative");
-    })
-}
-function low(){
-    chrome.storage.sync.set({fakeness: 50}, function() {
-        console.log('Value is set to ' + "low");
-    })
-}
-function high(){
-    chrome.storage.sync.set({fakeness: 90}, function() {
-        console.log('Value is set to ' + "high");
-    })
-}
-function off(){
-    chrome.storage.sync.set({fakeness: "off"}, function() {
-        console.log('Value is set to ' + "off");
-    })
-}
-
-/*
-chrome.tabs.executeScript(null, { file: "jquery-3.4.1.js" }, function() {
-    chrome.tabs.executeScript(null, { file: "popups.js" });
-});
-
-function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
+function eval(untrust, trust) {
+    var contentElement = document.getElementById("content-warning")
+    contentElement.setAttribute('style', 'display: none;')
+    if(value == null){
+        console.log('Value is:')
+        console.log(value)
+        value = 75;
     }
-    rawFile.send(null); 
-}*/
 
+    if (value != 75) {
+        userSetting();
+    }
+
+
+
+	 var trustElement = document.getElementById("trust");
+	 if(!trust.includes("NaN") ) {
+         trustElement.innerText = trust * 100 + "%";
+
+         var untrustElement = document.getElementById("untrusted");
+         untrustElement.innerText = untrust * 100 + "%";
+     }
+
+
+	 console.log(value)
+     if (value != 0){
+        if(untrust*100 >= value){
+         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+             chrome.tabs.sendMessage(tabs[0].id, {greeting: "Alert"}, function(response) {
+
+             });
+         });
+         chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
+         chrome.browserAction.setBadgeText({text: "!"});
+         
+        contentElement.setAttribute('style', '')
+        
+     }
+     }
+}
+
+
+
+
+function sendURL(url){
+    const data = { article_url: url };
+    userSetting();
+
+    fetch('https://api.qualitativly.com/classify/covid19', {
+         method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+
+    eval(data.untrustworthy, data.trustworthy);
+    })
+    .catch((error) => {
+    });
+}

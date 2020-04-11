@@ -1,88 +1,35 @@
 <html>
     <head>
+    <style>
+        #QHeader {
+            background-color: turquoise;
+        }
+    </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Qualitativly</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-        <script src='popup.js'></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('conservative').addEventListener('click', main);      
-});
-function main() {
-  var source = document.getElementById('source').value;
-  document.getElementById("result").innerHTML = source;
-}
-        </script>
-
-      </head>
-      <body>
-      </html>
-    <nav class="navbar"><div class="container">
-        <div class="navbar-brand"><a class="navbar-item" target="_blank" rel="noopener noreferrer" href="https://www.qualitativly.com">Qualitativly</a><a class="navbar-burger" role="button" aria-label="menu" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
-        <div class="navbar-menu">
-          <div class="navbar-start"><a class="navbar-item" href="popup.html">Settings</a><a class="navbar-item" href="reclassification.html">Submit Reclassification</a><a class="navbar-item" target="_blank" rel="noopener noreferrer" href="https://www.qualitativly.com/trustedsources/">Verified Sitelist</a>
-            <a class="navbar-item" href="#"> </a>
-          </div>
+        <script src="popup.js"></script>
+    </head>
+        <body>
+        <div class="card" id="QHeader">
+            <div class="card-header">
+                <h3 class="card-header-title is-inline">Qualitativly<span class="is-pulled-right"><img src="QLogo24.png" alt=""></span></h3>
+            </div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-header-title is-inline" >Trusted Score<span class="tag is-success is-pulled-right" id="trust">-</span></h3>
+            </div>
+            <div class="card-header">
+                    <h3 class="card-header-title is-inline">Untrusted Score<span class="tag is-red is-pulled-right" style="background-color: red" id="untrusted">-</span></h3>
+            </div>
+            <div class="card-header">
+                    <h3 class="card-header-title is-inline"><a href="settings.html" target="blank">Settings</a></h3>
+            </div>
+            <div class="card-header" style="display:none;" id="content-warning">
+                <h3 class="card-header-title is-inline">This article has an high untrusted score please take care</h3>
+            </div>
         </div>
-      </div>
-    </nav>
-    <section class="section"><div class="container has-text-centered">
-        <h2 class="title">"Fakenews" Level</h2>
-        <div class="columns">
-          <div class="column">
-            <div class="card">
-              <div class="card-content">
-                <h3 class="title is-4">Completely Oblivious</h3>
-                <p class="block">When you want to turn off Qualitativly for some quality COVID-19 Memes.</p>
-                <h4 class="title is-spaced is-5">OFF<small> </small></h4>
-                <button class="button is-primary is-outlined" type="button" >Confirm</button>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-content">
-                <h3 class="title is-4">Relaxed Reading</h3>
-                <p class="block">When you want to think that you are reading real news, but just want to be entertained.</p>
-                <h4 class="title is-spaced is-5">50% Trusted Sources <small> </small></h4>
-                <button class="button is-primary" type="button">Confirm</button>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-content">
-                <h3 class="title is-4">Conservative Reader</h3>
-                <p class="block">When you would like to see articles from independents as well as cited sources.</p>
-                <h4 class="title is-spaced is-5">75% Trusted Sources <small> </small></h4>
-                <button class="button is-primary is-outlined" id="conservative" type="button">Confirm</button>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="card">
-              <div class="card-content">
-                <h3 class="title is-4">Trusted Only</h3>
-                <p class="block">When you only trust the Government, and cited resources.<br><br></p>
-                <h4 class="title is-spaced is-5">90% Trusted Sources <small> </small></h4>
-                <button class="button is-primary is-outlined" type="button">Confirm</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer class="footer"><div class="container has-text-centered">
-        <div class="columns is-centered">
-          <div class="column is-8">
-            <div class="level"><a class="level-item" target="_blank" rel="noopener noreferrer" href="https://www.qualitativly.com/trustedsources/">Verified Sitelist</a></div>
-          </div>
-        </div>
-        <hr><p class="subtitle is-6">© 2020 Qualitativly - All right reserved.</p>
-      </div>
-    </footer>
-      </body>
-
+    </body>
 </html>
