@@ -2,7 +2,13 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
-               sendURL(url);
+                let regex = "chrome"
+                if(url.includes(regex)){
+
+                }
+                else{sendURL(url)
+                };
+
         });
 
 })
@@ -18,9 +24,9 @@ function userSetting(){
 
 function eval(untrust, trust) {
 	 var trustElement = document.getElementById("trust");
-     trustElement.innerText = trust;
+     trustElement.innerText = trust* 100;
      var untrustElement = document.getElementById("untrusted");
-     untrustElement.innerText = untrust;
+     untrustElement.innerText = untrust * 100;
 }
 
 
