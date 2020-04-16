@@ -4,32 +4,32 @@ document.addEventListener("DOMContentLoaded", function(){
                 chrome.storage.sync.get(['fakeness'], function(result){
                         value = result.fakeness;
                         if (value == '90'){
-                            trust_score_ele.innerText = "Your current trust setting:";
-                            trust_location_ele.setAttribute('style', 'color: green')
-                            trust_location_ele.innerText = "High"
+                            trust_score_ele.innerText = "Your threshold:";
+                            trust_location_ele.setAttribute('style', 'color: white; background-color: green;')
+                            trust_location_ele.innerText = "90%"
                         }
                         if (value == '75'){
-                            trust_score_ele.innerText = "Your current trust setting:";
-                            trust_location_ele.setAttribute('style', 'color: yellow')
-                            trust_location_ele.innerText = "Conservative"
+                            trust_score_ele.innerText = "Your threshold:";
+                            trust_location_ele.setAttribute('style', 'color: black; background-color: yellow;')
+                            trust_location_ele.innerText = "75%"
                         }
                         if (value == '50'){
-                            trust_score_ele.innerText = "Your current trust setting:";
-                            trust_location_ele.setAttribute('style', 'color: red')
-                            trust_location_ele.innerText = "Low"
+                            trust_score_ele.innerText = "Your threshold:";
+                            trust_location_ele.setAttribute('style', 'color: black; background-color: red;')
+                            trust_location_ele.innerText = "50%"
                         }
                         if (value == '0'){
-                            trust_score_ele.innerText = "Your current trust setting:";
-                            trust_location_ele.setAttribute('style', 'color: red')
-                            trust_location_ele.innerText = "Off"
+                            trust_score_ele.innerText = "Your threshold:";
+                            trust_location_ele.setAttribute('style', 'color: black; background-color: red;')
+                            trust_location_ele.innerText = "0%"
                         }
                         if (value == null){
-                            trust_score_ele.innerText = "Your current trust setting:";
-                            trust_location_ele.setAttribute('style', 'color: yellow')
-                            trust_location_ele.innerText = "Conservative"
+                            trust_score_ele.innerText = "Your threshold:";
+                            trust_location_ele.setAttribute('style', 'color: black; background-color: yellow;')
+                            trust_location_ele.innerText = "75%"
                         }
                 })
-                
+
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
                 let regex = "chrome"
@@ -87,7 +87,7 @@ function eval(untrust, trust) {
              chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
              chrome.browserAction.setBadgeText({text: "!"});
              
-            contentElement.setAttribute('style', '')
+            //contentElement.setAttribute('style', '')
 
          }
          }

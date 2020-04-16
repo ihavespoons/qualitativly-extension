@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             for (var x = 0; x < elements_2.length; x++) {
                 elements_2[x].setAttribute('class', 'button is-outlined')
             }
-            this.id.setAttribute('class', 'button is-primary')
+            this.setAttribute('class', 'button is-primary')
         })
     }
     set_initial_button_state();
