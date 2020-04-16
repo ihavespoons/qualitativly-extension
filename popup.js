@@ -4,27 +4,22 @@ document.addEventListener("DOMContentLoaded", function(){
                 chrome.storage.sync.get(['fakeness'], function(result){
                         value = result.fakeness;
                         if (value == '90'){
-                            trust_score_ele.innerText = "Your threshold:";
-                            trust_location_ele.setAttribute('style', 'color: white; background-color: green;')
+                            trust_location_ele.setAttribute('style', 'color: white; background-color: #48c774;')
                             trust_location_ele.innerText = "90%"
                         }
                         if (value == '75'){
-                            trust_score_ele.innerText = "Your threshold:";
                             trust_location_ele.setAttribute('style', 'color: black; background-color: yellow;')
                             trust_location_ele.innerText = "75%"
                         }
                         if (value == '50'){
-                            trust_score_ele.innerText = "Your threshold:";
                             trust_location_ele.setAttribute('style', 'color: black; background-color: red;')
                             trust_location_ele.innerText = "50%"
                         }
                         if (value == '0'){
-                            trust_score_ele.innerText = "Your threshold:";
                             trust_location_ele.setAttribute('style', 'color: black; background-color: red;')
                             trust_location_ele.innerText = "0%"
                         }
                         if (value == null){
-                            trust_score_ele.innerText = "Your threshold:";
                             trust_location_ele.setAttribute('style', 'color: black; background-color: yellow;')
                             trust_location_ele.innerText = "75%"
                         }
@@ -67,11 +62,11 @@ function eval(untrust, trust) {
          var trustElement = document.getElementById("trust");
          if(!trust.includes("NaN") ) {
              pre_calc = trust * 100
-             trustElement.innerText = pre_calc.toFixed(1) + "%";
+             trustElement.innerText = pre_calc.toFixed(0) + "%";
 
              var untrustElement = document.getElementById("untrusted");
              pre_calc_un = untrust * 100
-             untrustElement.innerText = pre_calc_un.toFixed(1) + "%";
+             untrustElement.innerText = pre_calc_un.toFixed(0) + "%";
          }
 
          console.log(value)

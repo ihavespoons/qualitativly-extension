@@ -9,28 +9,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Qualitativly</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <script defer src="all.js"></script>
         <script src="popup.js"></script>
     </head>
         <body>
         <div class="card" id="QHeader">
             <div class="card-header">
-                <h3 class="card-header-title is-inline subtitle is-4">Qualitativly<span class="is-pulled-right"><img src="QLogo24.png" alt=""></span></h3>
+                <h3 class="card-header-title is-inline subtitle is-5">Qualitativly<span class="is-pulled-right"><img src="QLogo24.png" alt=""></span></h3>
             </div>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-header-title is-inline subtitle" >Trusted Score<span class="tag is-success is-pulled-right" id="trust">-</span></h3>
+                <h3 class="card-header-title is-inline is-5" >Trusted Score<span class="tag is-success is-pulled-right" id="trust">-</span></h3>
             </div>
             <div class="card-header">
-                    <h3 class="card-header-title is-inline subtitle">Untrusted Score<span class="tag is-red is-pulled-right" style="background-color: red" id="untrusted">-</span></h3>
+                    <h3 class="card-header-title is-inline is-5">Untrusted Score<span class="tag is-red is-pulled-right" style="background-color: red" id="untrusted">-</span></h3>
             </div>
             <div class="card-header">
-                    <h3 class="card-header-title is-inline"><a href="settings.html" target="blank">Settings</a></h3>
+                <h3 class="card-header-title is-5 is-inline" id="trust-score-header">Your Threshold<span class="tag is-pulled-right" id="trust-score-body">-</span></h3>
             </div>
-            <div class="card-content">
-                <h3 class="subtitle is-5 is-inline" id="trust-score-header"></h3>
-                <h3 class="subtitle is-5 is-inline" id="trust-score-body" ></h3>
-            </div>
+            <footer class="card-footer">
+                <span class="card-footer-item">
+                    <i class="fas fa-cog" style="padding-right: 3px;"> </i> 
+                    <a href="settings.html" target="blank">Settings</a>
+                </span>
+                <span class="card-footer-item">
+                    <i class="fas fa-home" style="padding-right: 3px;"> </i>
+                    <a href="https://www.qualitativly.com" target="blank">Website</a>
+                </span>
+                <span class="card-footer-item">
+                    <i class="fas fa-search" style="padding-right: 3px;"> </i>
+                    <a href="reclassification.html" target="blank">Support</a>
+                </span>
+            </footer>
         </div>
     </body>
 </html>
