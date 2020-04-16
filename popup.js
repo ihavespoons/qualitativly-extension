@@ -58,8 +58,6 @@ function userSetting(){
 function eval(untrust, trust) {
     chrome.storage.sync.get(['fakeness'], function(result){
         value = result.fakeness;
-        var contentElement = document.getElementById("content-warning")
-        contentElement.setAttribute('style', 'display: none;')
 
         if(value == null){
             console.log('Set default value')
