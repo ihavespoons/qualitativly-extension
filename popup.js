@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded", function(){
+                var trust_score_ele = document.getElementById("trust-score-header");
+                var trust_location_ele = document.getElementById("trust-score-body");
+                chrome.storage.sync.get(['fakeness'], function(result){
+                        value = result.fakeness;
+                        if (value == '90'){
+                            trust_score_ele.innerText = "Your current trust setting:";
+                            trust_location_ele.setAttribute('style', 'color: green')
+                            trust_location_ele.innerText = "High"
+                        }
+                        if (value == '75'){
+                            trust_score_ele.innerText = "Your current trust setting:";
+                            trust_location_ele.setAttribute('style', 'color: yellow')
+                            trust_location_ele.innerText = "Conservative"
+                        }
+                        if (value == '50'){
+                            trust_score_ele.innerText = "Your current trust setting:";
+                            trust_location_ele.setAttribute('style', 'color: red')
+                            trust_location_ele.innerText = "Low"
+                        }
+                        if (value == '0'){
+                            trust_score_ele.innerText = "Your current trust setting:";
+                            trust_location_ele.setAttribute('style', 'color: red')
+                            trust_location_ele.innerText = "Off"
+                        }
+                })
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
                 let regex = "chrome"
@@ -36,9 +61,6 @@ function eval(untrust, trust) {
     if (value != 75) {
         userSetting();
     }
-
-
-
 	 var trustElement = document.getElementById("trust");
 	 if(!trust.includes("NaN") ) {
          pre_calc = trust * 100

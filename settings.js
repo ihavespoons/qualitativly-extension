@@ -3,37 +3,43 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('low').addEventListener('click', low);
     document.getElementById('high').addEventListener('click', high);
     document.getElementById('off').addEventListener('click', off);
-    let fakeness_value
-    chrome.storage.sync.get(['fakeness'], function(result){
-        fakeness_value = result.fakeness;
-    })
-        if(fakeness_value == null) {
-        fakeness_value = 75;
-        }
-
-    if (fakeness_value == 0) {
-        off_button = document.getElementById('off')
-        off_button.setAttribute('class', 'button is-primary')
+    var elements = document.getElementsByClassName('button');
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('click', function() {
+            elements_2 = document.getElementsByClassName('button');
+            for (var x = 0; x < elements_2.length; x++) {
+                elements_2[x].setAttribute('class', 'button is-outlined')
+            }
+            this.setAttribute('class', 'button is-primary')
+        })
     }
-    if (fakeness_value == 50) {
-        low_button = document.getElementById('low')
-        low_button.setAttribute('class', 'button is-primary')
-    }
-    if (fakeness_value == 75) {
-        con_button = document.getElementById('conservative')
-        con_button.setAttribute('class', 'button is-primary')
-    }
-    if (fakeness_value == 90) {
-        high_button = document.getElementById('high')
-        high_button.setAttribute('class', 'button is-primary')
-    }
+    set_initial_button_state();
 });
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        console.log(request)
-    });
 
+
+
+function set_initial_button_state(){
+    chrome.storage.sync.get(['fakeness'], function(result){
+        value = result.fakeness
+        if (value == '0') {
+        off_button = document.getElementById('off');
+        off_button.setAttribute('class', 'button is-primary');
+        }
+        if (value == '50') {
+        low_button = document.getElementById('low');
+        low_button.setAttribute('class', 'button is-primary');
+        }
+        if (value == '75') {
+        con_button = document.getElementById('conservative');
+        con_button.setAttribute('class', 'button is-primary')
+        }
+        if (value == '90') {
+        high_button = document.getElementById('high');
+        high_button.setAttribute('class', 'button is-primary');
+        }
+    });
+}
 
 function conservative(){
     chrome.storage.sync.set({fakeness: 75}, function() {
