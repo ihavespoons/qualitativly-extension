@@ -23,7 +23,13 @@ document.addEventListener("DOMContentLoaded", function(){
                             trust_location_ele.setAttribute('style', 'color: red')
                             trust_location_ele.innerText = "Off"
                         }
+                        if (value == null){
+                            trust_score_ele.innerText = "Your current trust setting:";
+                            trust_location_ele.setAttribute('style', 'color: yellow')
+                            trust_location_ele.innerText = "Conservative"
+                        }
                 })
+                
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
                 let regex = "chrome"
@@ -50,64 +56,66 @@ function userSetting(){
 }
 
 function eval(untrust, trust) {
-    var contentElement = document.getElementById("content-warning")
-    contentElement.setAttribute('style', 'display: none;')
-    if(value == null){
-        console.log('Value is:')
-        console.log(value)
-        value = 75;
-    }
+    chrome.storage.sync.get(['fakeness'], function(result){
+        value = result.fakeness;
+        var contentElement = document.getElementById("content-warning")
+        contentElement.setAttribute('style', 'display: none;')
 
-    if (value != 75) {
-        userSetting();
-    }
-	 var trustElement = document.getElementById("trust");
-	 if(!trust.includes("NaN") ) {
-         pre_calc = trust * 100
-         trustElement.innerText = pre_calc.toFixed(1) + "%";
+        if(value == null){
+            console.log('Set default value')
+            value = 75;
+        }
 
-         var untrustElement = document.getElementById("untrusted");
-         pre_calc_un = untrust * 100
-         untrustElement.innerText = pre_calc_un.toFixed(1) + "%";
-     }
+         var trustElement = document.getElementById("trust");
+         if(!trust.includes("NaN") ) {
+             pre_calc = trust * 100
+             trustElement.innerText = pre_calc.toFixed(1) + "%";
 
+             var untrustElement = document.getElementById("untrusted");
+             pre_calc_un = untrust * 100
+             untrustElement.innerText = pre_calc_un.toFixed(1) + "%";
+         }
 
-	 console.log(value)
-     if (value != 0){
-        if(untrust*100 >= value){
-         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-             chrome.tabs.sendMessage(tabs[0].id, {greeting: "Alert"}, function(response) {
+         console.log(value)
+         if (value != 0){
+            if(untrust*100 >= value){
+             chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                 chrome.tabs.sendMessage(tabs[0].id, {greeting: "Alert"}, function(response) {
 
+                 });
              });
-         });
-         chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
-         chrome.browserAction.setBadgeText({text: "!"});
-         
-        contentElement.setAttribute('style', '')
+             chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
+             chrome.browserAction.setBadgeText({text: "!"});
+             
+            contentElement.setAttribute('style', '')
 
-     }
-     }
+         }
+         }
+    })
+
 }
 
 
 
 
 function sendURL(url){
-    const data = { article_url: url };
     userSetting();
-
-    fetch('https://api.qualitativly.com/classify/covid19', {
+    if(url != null) {
+        const data = { article_url: url };
+        fetch('https://api.qualitativly.com/classify/covid19', {
          method: 'POST', 
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-    })
-    .then((response) => response.json())
-    .then((data) => {
+        })
+        .then((response) => response.json())
+        .then((data) => {
 
-    eval(data.untrustworthy, data.trustworthy);
-    })
-    .catch((error) => {
-    });
+        eval(data.untrustworthy, data.trustworthy);
+        })
+        .catch((error) => {
+        });
+    }
+
 }

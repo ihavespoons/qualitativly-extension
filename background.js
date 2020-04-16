@@ -38,35 +38,43 @@ function eval(untrust, trust) {
 
 
 function sendURL(url){
-    const data = { article_url: url };
     userSetting();
+    if(url != null) {
+        const data = { article_url: url };
+        fetch('https://api.qualitativly.com/classify/covid19', {
+             method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
 
-    fetch('https://api.qualitativly.com/classify/covid19', {
-         method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then((response) => response.json())
-    .then((data) => {
-
-    eval(data.untrustworthy, data.trustworthy);
-    })
-    .catch((error) => {
-    });
+        eval(data.untrustworthy, data.trustworthy);
+        })
+        .catch((error) => {
+        });
+    }
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
-    chrome.browserAction.setBadgeText({text: ""});
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    if (changeInfo.url) {
+        chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 1] });
+        chrome.browserAction.setBadgeText({text: ""});
+        chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let regex = "chrome"
-        if(url.includes(regex)){
+        let other_exr = "youtube"
+        let other_other_exr = "facebook"
+        let other_other_other_exr = "github"
+        let other_other_other_other_exr = "twitter"
+        if(url.includes(regex) || url.includes(other_exr) || url.includes(other_other_exr) || url.includes(other_other_other_exr) || url.includes(other_other_other_other_exr)){
         }
         else{sendURL(url)};
         });
+    }
+
 });
 
 chrome.tabs.onCreated.addListener(function(tab) {
@@ -75,7 +83,11 @@ chrome.tabs.onCreated.addListener(function(tab) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let regex = "chrome"
-        if(url.includes(regex)){
+        let other_exr = "youtube"
+        let other_other_exr = "facebook"
+        let other_other_other_exr = "github"
+        let other_other_other_other_exr = "twitter"
+        if(url.includes(regex) || url.includes(other_exr) || url.includes(other_other_exr) || url.includes(other_other_other_exr) || url.includes(other_other_other_other_exr)){
         }
         else{sendURL(url)};
         });
@@ -87,7 +99,11 @@ chrome.tabs.onActivated.addListener(function(tabId) {
         chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
         let url = tabs[0].url;
         let regex = "chrome"
-        if(url.includes(regex)){
+        let other_exr = "youtube"
+        let other_other_exr = "facebook"
+        let other_other_other_exr = "github"
+        let other_other_other_other_exr = "twitter"
+        if(url.includes(regex) || url.includes(other_exr) || url.includes(other_other_exr) || url.includes(other_other_other_exr) || url.includes(other_other_other_other_exr)){
         }
         else{sendURL(url)};
         });
