@@ -3,7 +3,7 @@
 "name": "Qualitativly",
 "version": "0.0.1",
 
-"permissions":["pageCapture", "activeTab", "tabs", "storage", "<all_urls>", "notifications"],
+"permissions":["activeTab", "tabs", "storage", "http://*/*", "https://*/*", "notifications"],
 
 "background":{
     "scripts": ["background.js"],
@@ -21,7 +21,7 @@
   "content_scripts": [
     {
         "matches":["file:///settings.html*", "http://*/*", "https://*/*"],
-        "js": ["settings.js"]
+        "js": ["settings.js", "analytics.js", "all.js"]
     }],
     
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
