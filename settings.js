@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('low').addEventListener('click', low);
     document.getElementById('high').addEventListener('click', high);
     document.getElementById('off').addEventListener('click', off);
+    document.getElementById('analytics-box').addEventListener('change', set_analytics_state)
     var elements = document.getElementsByClassName('button');
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function() {
@@ -39,6 +40,26 @@ function set_initial_button_state(){
         high_button.setAttribute('class', 'button is-primary');
         }
     });
+    chrome.storage.sync.get(['analytics'], function(result){
+        value = result.analytics
+        if (value != 'false') {
+            analytics_check = document.getElementById('analytics-box');
+            analytics_check.checked = true;
+        }
+    });
+}
+
+function set_analytics_state(){
+    if (this.checked) {
+        chrome.storage.sync.set({analytics: 'true'}, function() {
+         console.log('Set analytics to true')
+        });
+    }
+    else {
+        chrome.storage.sync.set({analytics: 'false'}, function() {
+            console.log('Set analytics to false')
+        });
+    }
 }
 
 function conservative(){
