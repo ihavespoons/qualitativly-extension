@@ -23,7 +23,16 @@ document.addEventListener("DOMContentLoaded", function(){
                             trust_location_ele.setAttribute('style', 'color: black; background-color: yellow;')
                             trust_location_ele.innerText = "75%"
                         }
-                })
+                });
+                chrome.storage.sync.get(['alphadismissed'], function(alpharesult){
+                    dismissed = alpharesult.alphadismissed;
+                    if (dismissed != "yes"){
+                        var alpha_warning = document.getElementById("alpha-notification");
+                        alpha_warning.setAttribute('style', ' ')
+                    }
+                });
+
+            document.getElementById('alpha-button').addEventListener('click', dismissalpha);
 
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 let url = tabs[0].url;
@@ -48,6 +57,14 @@ function userSetting(){
         value = result.fakeness;
     })
     
+}
+
+function dismissalpha(){
+    chrome.storage.sync.set({alphadismissed: 'yes'}, function() {
+    });
+    document.getElementById('alpha-notification').setAttribute('style', 'display: none;')
+    location.reload();
+    return false;
 }
 
 function eval(untrust, trust) {
